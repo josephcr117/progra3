@@ -74,9 +74,13 @@
     <Content Include="DatabaseHelper\StoredProcedures\spDeleteFavBook.sql" />
     <Content Include="DatabaseHelper\StoredProcedures\spFavBook.sql" />
     <Content Include="DatabaseHelper\StoredProcedures\spGetCart.sql" />
+    <Content Include="DatabaseHelper\StoredProcedures\spGetCompra.sql" />
     <Content Include="DatabaseHelper\StoredProcedures\spGetLibros.sql" />
+    <Content Include="DatabaseHelper\StoredProcedures\spInsertUserData.sql" />
     <Content Include="DatabaseHelper\StoredProcedures\spSaveBook.sql" />
+    <Content Include="DatabaseHelper\StoredProcedures\spSaveCompra.sql" />
     <Content Include="DatabaseHelper\StoredProcedures\spSearchBook.sql" />
+    <Content Include="DatabaseHelper\StoredProcedures\spValidateUser.sql" />
     <Content Include="Images\A Game of Thrones.jpg" />
     <Content Include="Images\Harry Poter and the Chamber of Secrets.jpg" />
     <Content Include="Images\harrypotterphilstone.jpg" />
@@ -84,6 +88,7 @@
     <Content Include="Images\prisoner.jpg" />
     <Content Include="Images\The Shining.jpg" />
     <Content Include="Images\thegreenmile.jpg" />
+    <Content Include="Views\Checkout.aspx" />
     <Content Include="Views\main.aspx" />
     <Content Include="Views\myBooks.aspx" />
     <Content Include="Views\myCart.aspx" />
@@ -93,12 +98,22 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="DatabaseHelper\Database.cs" />
+    <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\FirebaseUser.cs" />
     <Compile Include="Models\Libros.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Personas.cs" />
     <Compile Include="Models\Tarjetas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

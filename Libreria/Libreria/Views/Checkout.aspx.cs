@@ -1,15 +1,15 @@
 ﻿using Libreria.Controllers;
+using Libreria.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Libreria.Models;
 
 namespace Libreria.Views
 {
-    public partial class myCart : System.Web.UI.Page
+    public partial class Checkout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,12 +23,20 @@ namespace Libreria.Views
 
                     gvCompra.DataSource = compraList;
                     gvCompra.DataBind();
+
+                    decimal totalPrice = compraList.Sum(item => item.precio);
+                    lblTotal.Text = totalPrice.ToString("0.00");
                 }
                 else
                 {
                     Response.Redirect("main.aspx");
                 }
             }
+
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
         }
     }
 }

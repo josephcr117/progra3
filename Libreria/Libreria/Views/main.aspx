@@ -14,7 +14,7 @@
         <div>
             <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a runat="server" id="UserNameIfLogged" class="navbar-brand" href="#">Libreria Internacional</a>
+                    <a runat="server" id="UserNameIfLogged" class="navbar-brand" href="main.aspx">Libreria Internacional</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -58,7 +58,7 @@
                                     <p class="card-text">Author: <%# Eval("autorLibro")%></p>
                                     <p class="card-text">Fecha de Publicacion: $<%# Eval("fechaPublicacion")%></p>
                                     <p class="card-text">ISBN: <%# Eval("ISBN")%></p>
-                                    <a href="myBooks.aspx?id=<%# Eval("ISBN")%>" class="btn btn-primary">Buy this Book for $<%# Eval("precio")%></a>
+                                    <a href="myBooks.aspx?isbn=<%# Eval("isbn") %>" class="btn btn-primary">Buy this Book for $<%# Eval("precio")%></a>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                             <div class="form-group">
                                 <div class="form-floating mb-3">
                                     <input runat="server" type="text" class="form-control" id="txtDisplayName" placeholder="John Doe" />
-                                    <label for="txtDisplayName">Name</label>
+                                    <label for="txtDisplayName">Full Name</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input runat="server" type="email" class="form-control" id="txtSignUpEmail" placeholder="name@example.com" />
@@ -125,6 +125,22 @@
                                 <div class="form-floating">
                                     <input runat="server" type="password" class="form-control" id="txtSignUpPwd" placeholder="Password" />
                                     <label for="txtSignUpPwd">Password</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input runat="server" type="text" class="form-control" id="txtCountry" placeholder="Costa Rica" />
+                                    <label for="txtCountry">Country</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input runat="server" type="text" class="form-control" id="txtProvincia" placeholder="San Jose" />
+                                    <label for="txtProvincia">Provincia</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input runat="server" type="text" class="form-control" id="txtAddress" placeholder="Del Palo Mango" />
+                                    <label for="txtAddress">Address</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input runat="server" type="number" class="form-control" id="txtZipCode" placeholder="10401" />
+                                    <label for="txtZipCode">ZipCode</label>
                                 </div>
                                 <hr />
                                 <div class="row">

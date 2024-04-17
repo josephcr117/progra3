@@ -9,6 +9,19 @@ namespace Libreria.Controllers
 {
     public class BookController
     {
+        public void SaveCompra(string email, string isbn, DateTime purchaseDate)
+        {
+            try
+            {
+                DatabaseHelper.Database database = new DatabaseHelper.Database();
+                database.SaveCompra(email, isbn, purchaseDate);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void SaveBook(Libros libros)
         {
             try
@@ -37,18 +50,51 @@ namespace Libreria.Controllers
             }
         }
 
-        public void DeleteCart(int bookedId)
+        public void DeleteCart(string isbn)
         {
             DatabaseHelper.Database database = new DatabaseHelper.Database();
 
-            database.DeleteCart(bookedId);
+            database.DeleteCart(isbn);
         }
 
-        public void DeleteFavBook(int bookedId)
+        public void DeleteFavBook(int isbn)
         {
             DatabaseHelper.Database database = new DatabaseHelper.Database();
 
-            database.DeleteFavBook(bookedId);
+            database.DeleteFavBook(isbn);
+        }
+
+        public List<Compra> GetCompra(string email)
+        {
+            List<Compra> compraList = new List<Compra>();
+
+            try
+            {
+                DatabaseHelper.Database database = new DatabaseHelper.Database();
+                // Call the stored procedure to retrieve the user's purchase history
+                DataTable dtCompra = database.GetCompra(email);
+
+                // Map the data from DataTable to List<Compra>
+                foreach (DataRow dr in dtCompra.Rows)
+                {
+                    Compra compra = new Compra
+                    {
+                        idCompra = Convert.ToInt32(dr["idCompra"]),
+                        email = dr["email"].ToString(),
+                        ISBN = dr["ISBN"].ToString(),
+                        fechaCompra = Convert.ToDateTime(dr["fechaCompra"]),
+                        nombreLibro = dr["nombreLibro"].ToString()
+                    };
+                    compraList.Add(compra);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                throw ex;
+            }
+
+            return compraList;
         }
 
         public List<Libros> GetCart(string email)

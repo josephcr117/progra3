@@ -11,7 +11,7 @@ namespace Libreria.Views
 {
 
 
-    public partial class myCart
+    public partial class Checkout
     {
 
         /// <summary>
@@ -39,6 +39,15 @@ namespace Libreria.Views
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater gvCompra;
+        protected global::System.Web.UI.WebControls.GridView gvCompra;
+
+        /// <summary>
+        /// Control lblTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
     }
 }

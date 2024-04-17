@@ -19,6 +19,54 @@ namespace Libreria.DatabaseHelper
             return Fill("spGetLibros", null);
         }
 
+        public bool ValidateUser(string email, string password)
+        {
+            bool isValid = false;
+
+            try
+            {
+                List<SqlParameter> paramList = new List<SqlParameter>();
+                paramList.Add(new SqlParameter("@Email", email));
+                paramList.Add(new SqlParameter("@Password", password));
+
+                DataTable result = Fill("spValidateUser", paramList);
+
+                // Check if any rows were returned and if the flag IsValidUser is true
+                isValid = result.Rows.Count > 0 && Convert.ToBoolean(result.Rows[0]["IsValidUser"]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return isValid;
+        }
+
+        public void SaveCompra(string email, string isbn, DateTime purchaseDate)
+        {
+            try
+            {
+                List<SqlParameter> paramList = new List<SqlParameter>();
+
+                paramList.Add(new SqlParameter("@Email", email));
+                paramList.Add(new SqlParameter("@ISBN", isbn));
+                paramList.Add(new SqlParameter("@FechaCompra", purchaseDate));
+
+                Execute("spSaveCompra", paramList);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable GetCompra(string email)
+        {
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@Email", email));
+            return Fill("spGetCompra", paramList);
+        }
+
         public DataTable GetLibros(string criteria)
         {
             List<SqlParameter> paramList = new List<SqlParameter>();
@@ -60,6 +108,26 @@ namespace Libreria.DatabaseHelper
                 throw ex;
             }
         }
+        public void InsertUserData(string nombreCompleto, string email, string pais, string provincia, string direccion, string codigoPostal, string password)
+        {
+            try
+            {
+                List<SqlParameter> paramList = new List<SqlParameter>();
+                paramList.Add(new SqlParameter("@nombreCompleto", nombreCompleto));
+                paramList.Add(new SqlParameter("@email", email));
+                paramList.Add(new SqlParameter("@pais", pais));
+                paramList.Add(new SqlParameter("@provincia", provincia));
+                paramList.Add(new SqlParameter("@direccion", direccion));
+                paramList.Add(new SqlParameter("@codigoPostal", codigoPostal));
+                paramList.Add(new SqlParameter("@password", password));
+
+                Execute("spInsertUserData", paramList);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public void FavBook(Libros libros)
         {
@@ -83,7 +151,7 @@ namespace Libreria.DatabaseHelper
             }
         }
 
-        public void DeleteCart(int isbn)
+        public void DeleteCart(string isbn)
         {
             List<SqlParameter> paramList = new List<SqlParameter>();
 
@@ -100,6 +168,8 @@ namespace Libreria.DatabaseHelper
 
             Execute("spDeleteFavBook", paramList);
         }
+
+
 
         public DataTable Fill(string storedProcedure, List<SqlParameter> paramList)
         {

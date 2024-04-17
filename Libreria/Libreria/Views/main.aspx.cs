@@ -1,4 +1,5 @@
 ﻿using Libreria.Controllers;
+using Libreria.DatabaseHelper;
 using Libreria.Models;
 using System;
 using System.Collections.Generic;
@@ -34,63 +35,86 @@ namespace Libreria.Views
 
             user = loginController.FirebaseAuth(user);
 
-            if (user != null)
+            try
             {
-                if (user.registered)
+                string email = txtEmail.Value;
+                string password = txtPwd.Value;
+
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
                 {
-                    Session["session"] = user;
+                    string errorScript = "alert('Please enter both email and password.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "errorAlert", errorScript, true);
+                    return;
+                }
 
-                    UserNameIfLogged.InnerText = "Welcome " + user.displayName;
+                Database db = new Database();
+                bool isValidUser = db.ValidateUser(email, password);
 
-                    //Mostranto el boton logout
-                    divLogout.Attributes.Remove("hidden");
-                    //Ocultando el login
-                    divLogin.Attributes.Add("hidden", "hidden");
+                if (isValidUser)
+                {
+                    Session["userEmail"] = email;
 
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Login approved')", true);
+                    string successScript = "alert('Sign in successful.'); window.location.href = 'main.aspx';";
+                    ClientScript.RegisterStartupScript(this.GetType(), "successAlert", successScript, true);
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Login denied')", true);
+                    string errorScript = "alert('Invalid email or password. Please try again.');";
+                    ClientScript.RegisterStartupScript(this.GetType(), "errorAlert", errorScript, true);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('User not found')", true);
+                string errorMessage = "An error occurred while attempting to login. Please try again later.";
+                throw ex;
             }
         }
 
         protected void btnLogout_ServerClick(object sender, EventArgs e)
         {
-            //Mostrando el login
-            divLogin.Attributes.Remove("hidden");
-            //Ocultando el boton logout
-            divLogout.Attributes.Add("hidden", "hidden");
-
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Session has been closed')", true);
-            Session.Clear();
+            try
+            {
+                Session.Clear();
+                Response.Redirect("main.aspx");
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = "An error occurred while attempting to logout. Please try again later.";
+                throw ex;
+            }
         }
 
         protected void btnSignUp_ServerClick(object sender, EventArgs e)
         {
-            FirebaseUser user = new FirebaseUser()
-            {
-                displayName = txtDisplayName.Value,
-                email = txtSignUpEmail.Value,
-                password = txtSignUpPwd.Value
-            };
+            string nombreCompleto = txtDisplayName.Value;
+            string email = txtSignUpEmail.Value;
+            string password = txtSignUpPwd.Value;
+            string pais = txtCountry.Value;
+            string provincia = txtProvincia.Value;
+            string direccion = txtAddress.Value;
+            string codigoPostal = txtZipCode.Value;
 
-            LoginController loginController = new LoginController();
-
-            if (loginController.FirebaseSigUp(user))
+            if (string.IsNullOrWhiteSpace(nombreCompleto) ||
+                string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(password) ||
+                string.IsNullOrWhiteSpace(pais) ||
+                string.IsNullOrWhiteSpace(provincia) ||
+                string.IsNullOrWhiteSpace(direccion) ||
+                string.IsNullOrWhiteSpace(codigoPostal))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Sign Up completed')", true);
+                string errorScript = "alert('Please fill out all required fields.');";
+                ClientScript.RegisterStartupScript(this.GetType(), "errorAlert", errorScript, true);
+                return;
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Sign Up failed')", true);
+                Database database = new Database();
+                database.InsertUserData(nombreCompleto, email, pais, provincia, direccion, codigoPostal, password);
+
+                Response.Redirect("main.aspx");
             }
         }
+
 
         protected void btnSearch_ServerClick(object sender, EventArgs e)
         {

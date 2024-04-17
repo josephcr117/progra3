@@ -40,17 +40,15 @@ namespace Libreria.Controllers
             return listaLibros;
         }
 
-        public List<Libros> GetLibro(string ISBN)
+        public Libros GetLibro(string ISBN)
         {
             List<Libros> listaLibros = GetLibros(string.Empty);
 
-            foreach (Libros libros in listaLibros)
+            foreach (Libros libro in listaLibros)
             {
-                if (libros.ISBN == ISBN)
+                if (libro.ISBN == ISBN)
                 {
-                    listaLibros.Clear();
-                    listaLibros.Add(libros);
-                    return listaLibros;
+                    return libro;
                 }
             }
 
