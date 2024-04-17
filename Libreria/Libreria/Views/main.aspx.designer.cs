@@ -69,22 +69,22 @@ namespace Libreria.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLogin;
 
         /// <summary>
-        /// Control signInEmail.
+        /// Control txtEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl signInEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEmail;
 
         /// <summary>
-        /// Control signInPw.
+        /// Control txtPwd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword signInPw;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPwd;
 
         /// <summary>
         /// Control btnLogin.
@@ -123,31 +123,31 @@ namespace Libreria.Views
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
 
         /// <summary>
-        /// Control signUpName.
+        /// Control txtDisplayName.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText signUpName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDisplayName;
 
         /// <summary>
-        /// Control signUpEmail.
+        /// Control txtSignUpEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl signUpEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtSignUpEmail;
 
         /// <summary>
-        /// Control signUpPassword.
+        /// Control txtSignUpPwd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword signUpPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtSignUpPwd;
 
         /// <summary>
         /// Control btnSignUp.
@@ -166,5 +166,14 @@ namespace Libreria.Views
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
+
+        /// <summary>
+        /// Control alertError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertError;
     }
 }

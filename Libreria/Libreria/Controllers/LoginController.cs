@@ -12,7 +12,7 @@ namespace Libreria.Controllers
 {
     public class LoginController
     {
-        string key = "AIzaSyAK_Y_hAywqsbpR1TMcnhpGduSfBKhKq-o";
+        string key = "AIzaSyAqjSJaCB9-PfMRLcx9kMp7SSiJuTFdcAY";
 
         public FirebaseUser FirebaseAuth(FirebaseUser user)
         {
@@ -37,14 +37,13 @@ namespace Libreria.Controllers
                     return JsonConvert.DeserializeObject<FirebaseUser>(reader.ReadToEnd());
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Firebase Authentication/Sign Up Error: " + ex.Message);
                 return null;
             }
         }
 
-        public bool FirebaseSignUp(FirebaseUser user)
+        public bool FirebaseSigUp(FirebaseUser user)
         {
             string url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + key;
             string body = "{'email':'" + user.email + "','password':'" + user.password + "','returnSecureToken':true, 'displayName': '" + user.displayName + "'}";
@@ -68,9 +67,8 @@ namespace Libreria.Controllers
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine("Firebase Authentication/Sign Up Error: " + ex.Message);
                 return false;
             }
         }

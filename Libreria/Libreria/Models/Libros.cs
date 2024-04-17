@@ -7,6 +7,7 @@ namespace Libreria.Models
 {
     public class Libros
     {
+
         public string ISBN { get; set; }
         public string nombreLibro { get; set; }
         public string autorLibro { get; set; }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Libreria.Views
@@ -25,8 +26,8 @@ namespace Libreria.Views
         {
             FirebaseUser user = new FirebaseUser()
             {
-                email = signInEmail.Value,
-                password = signInPw.Value
+                email = txtEmail.Value,
+                password = txtPwd.Value
             };
 
             LoginController loginController = new LoginController();
@@ -74,14 +75,14 @@ namespace Libreria.Views
         {
             FirebaseUser user = new FirebaseUser()
             {
-                displayName = signUpName.Value,
-                email = signUpEmail.Value,
-                password = signUpPassword.Value
+                displayName = txtDisplayName.Value,
+                email = txtSignUpEmail.Value,
+                password = txtSignUpPwd.Value
             };
 
             LoginController loginController = new LoginController();
 
-            if (loginController.FirebaseSignUp(user))
+            if (loginController.FirebaseSigUp(user))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Sign Up completed')", true);
             }

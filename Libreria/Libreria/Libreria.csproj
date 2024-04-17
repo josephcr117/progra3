@@ -85,6 +85,8 @@
     <Content Include="Images\The Shining.jpg" />
     <Content Include="Images\thegreenmile.jpg" />
     <Content Include="Views\main.aspx" />
+    <Content Include="Views\myBooks.aspx" />
+    <Content Include="Views\myCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,20 @@
     </Compile>
     <Compile Include="Views\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\myBooks.aspx.cs">
+      <DependentUpon>myBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\myBooks.aspx.designer.cs">
+      <DependentUpon>myBooks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\myCart.aspx.cs">
+      <DependentUpon>myCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\myCart.aspx.designer.cs">
+      <DependentUpon>myCart.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
