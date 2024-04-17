@@ -1,0 +1,11 @@
+USE [LibreriaInternacional]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[spGetLibros]
+	
+AS
+BEGIN
+	SELECT * FROM Libros
+END
